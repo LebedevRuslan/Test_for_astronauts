@@ -24,7 +24,7 @@ $(function () {
    },                                                           // Конец создания диограммы
     series:[                                                    // Заполнение диограммы масивом
     {  name: '1',
-    
+
     data: [120, 13, 12, 19, 41], 
    },{name: '2',
     data: [2, 2, 21, 24, 12]
@@ -43,33 +43,22 @@ $(function () {
     }
     $('#btnLoad').click(function(){                               //Кнопка инициализации отправки данных JSON
     for (i = 0; i < 5; i++) {
-      var oData = JSON.parse( $('#'+(i+1)).val() );              //Преобрахуем строку в обьект  
+      var oData = JSON.parse( $('#'+(i+1)).val() );              //Преообразуем строку в обьект  
       chart.series[i].setData(oData);                            //Загружаем в график
     }});
-      var t = arr;
-    $('#btnRandom').click(function(){                     
-    for (i = 0; i < 5; i++){
-      var sData = JSON.stringify(t);                              //Заменяем данные на рандомный массив
-        $('#'+(i+1)).val(sData);                     
-    } });
 
+var qqq=[];   
+   
+   for (i = 0; i < 5; i++){
+  var b=[46,23,54,64,12].sort(function() {return 0.5 - Math.random()}); //Создаем цикл с заполнеием рандомных данных в qqq
+    qqq[i] = b;
+   }
+$('#btnRandom').click(function(){ 
+
+      for (i = 0; i < 5; i++) {
+        
+         
+    var sData = JSON.stringify(qqq[i]);
+    $('#'+(i+1)).val(sData);      
+    }});
 });
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex ;
-    while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);         //Создаем не массив с неповторяющимеся данными
-    currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }                                                                 //Описываем рандомный массив
-    return array;
-}
-
-var arr = [];
-for (var i = 0; i < 5; i++)
-  arr.push(i);
-shuffle(arr);
-console.log(arr);
-
-
